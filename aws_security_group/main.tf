@@ -6,11 +6,16 @@ data "http" "my_public_ip" {
 
 # The IP address of the current machine
 locals {
-  my_ip = "${replace(data.http.my_public_ip.response_body, "\n", "")}"
+  my_ip = replace(data.http.my_public_ip.response_body, "\n", "")
+}
+
+module "vpc" {
+  source = "git@github.com:Artyom996/modules-try-execute.git//aws_network"
 }
 
 resource "aws_security_group" "my-sg" {
   name   = "My SG"
+  vpc_id = module.vpc.vpc_id
   tags = {
     "Name" = "Test Security Group"
   }
