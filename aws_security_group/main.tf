@@ -30,13 +30,13 @@ resource "aws_security_group" "my-sg" {
     cidr_blocks = var.cidr_block
   }
 
-  ingress {
-    description = "Allow port HTTPS"
-    from_port   = 443
-    to_port     = 443
-    protocol    = var.protocol
-    cidr_blocks = var.cidr_block
-  }
+  # ingress {
+  #   description = "Allow port HTTPS"
+  #   from_port   = 443
+  #   to_port     = 443
+  #   protocol    = var.protocol
+  #   cidr_blocks = var.cidr_block
+  # }
 
   ingress {
     description = "Allow port SSH"
